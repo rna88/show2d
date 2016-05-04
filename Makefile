@@ -14,12 +14,12 @@ BinPath = ../irr2d
 
 # general compiler settings (might need to be set when compiling the lib, too)
 # preprocessor flags, e.g. defines and include paths
-USERCPPFLAGS = 
+USERCPPFLAGS = -I$(IrrlichtHome)/irrKlang-64bit-1.5.0/include 
 # compiler flags such as optimization flags
-USERCXXFLAGS = -O3 -ffast-math
+USERCXXFLAGS = -O3 -ffast-math -pthread
 #USERCXXFLAGS = -g -Wall
 # linker flags such as additional libraries and link paths
-USERLDFLAGS =
+USERLDFLAGS =-L"/usr/lib" $(IrrlichtHome)/irrKlang-64bit-1.5.0/bin/linux-gcc-64/libIrrKlang.so
 
 ####
 #no changes necessary below this line

@@ -9,7 +9,10 @@ you want to draw a cool interface or head up display for your 3d game.
 As always, I include the header files, use the irr namespace,
 and tell the linker to link with the .lib file.
 */
+
 #include <irrlicht.h>
+//#include "irrKlang.h"
+#include "../irrKlang-64bit-1.5.0/include/irrKlang.h"
 #include "driverChoice.h"
 #include "exampleHelper.h"
 #include <time.h>
@@ -42,6 +45,7 @@ int main()
 
 	//IrrlichtDevice *device = createDevice(driverType, core::dimension2d<u32>(512, 384));
 	IrrlichtDevice *device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(512, 384), 32, 0, 0 , 1, 0);
+	irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
 
 	if (device == 0)
 		return 1; // could not create selected driver.
