@@ -45,9 +45,9 @@ int main()
 
 	//IrrlichtDevice *device = createDevice(driverType, core::dimension2d<u32>(512, 384));
 	IrrlichtDevice *device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(512, 384), 32, 0, 0 , 1, 0);
-	irrklang::ISoundEngine* engine = irrklang::createIrrKlangDevice();
+	irrklang::ISoundEngine* sengine = irrklang::createIrrKlangDevice();
 
-	if (device == 0)
+	if (device == 0 || sengine == 0 )
 		return 1; // could not create selected driver.
 
 	device->setWindowCaption(L"Irrlicht Engine - 2D Graphics Demo");
@@ -97,6 +97,11 @@ int main()
 	u32 then = device->getTimer()->getTime();
 	double lag = 0.0;
 
+	//sengine->play2D("../../irrKlang-64bit-1.5.0/media/ophelia.mp3",0,0);
+	//sengine->play2D("../../irrKlang-64bit-1.5.0/media/bell.wav",0,0);
+	//sengine->play2D("../../irrKlang-64bit-1.5.0/media/getout.ogg");
+	sengine->play2D("../../irrKlang-64bit-1.5.0/media/getout.ogg",1,0);
+	sengine->play2D("../../irrKlang-64bit-1.5.0/media/explosion.wav",1,0);
 
 	/*
 	Everything is prepared, now we can draw everything in the draw loop,
@@ -219,6 +224,7 @@ int main()
 	}
 
 	device->drop();
+	sengine->drop();
 
 	return 0;
 }
