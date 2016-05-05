@@ -2,13 +2,12 @@
 #define WORLD_H
 
 
-// componente (put these under namespace show/s2d)
+// System headers
 
 
 namespace s2d
 {
 
-	struct entityInfo
 
 class World
 {
@@ -27,16 +26,14 @@ public:
 
 private:
 
-	collisionGrid grid;
-
-	std::vector<statistics> statisticsComponents;
-	std::vector<behaviour> behaviourComponents;
-	std::vector<action> actionComponents;
-	std::vector<collision> collisionComponents;
-	std::vector<physics> physicsComponents;
-	std::vector<animation> animationComponents;
-	std::vector<graphics> graphicsComponents;
-	std::vector<sound> soundComponents;
+	//std::vector<statistics> statisticsComponents;
+	//std::vector<behaviour> behaviourComponents;
+	//std::vector<action> actionComponents;
+	//std::vector<collision> collisionComponents;
+	std::vector<physicsComponent> physicsComponentList;
+	//std::vector<animation> animationComponents;
+	std::vector<graphicsComponent> graphicsComponentList;
+	//std::vector<sound> soundComponents;
 
 };
 

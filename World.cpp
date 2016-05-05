@@ -2,25 +2,15 @@
 
 #include <iostream>
 
-// componente (put these under namespace show/s2d)
-#include "statistics.h"
-#include "behaviour.h"
-#include "action.h"
-#include "collision.h"
-#include "physics.h"
-#include "animation.h"
-#include "graphics.h"
-#include "sound.h"
+// System headers
+#include "physicsSystem.h"
+#include "graphicsSystem.h"
 
-#include "collisionGrid.h"
+#include "Component.h"
 
 namespace s2d
 {
 
-	struct entityInfo
-	{
-
-	};
 
 	
   World::World()

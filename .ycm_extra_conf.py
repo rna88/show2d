@@ -53,10 +53,11 @@ flags = [
 '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include',
 '-isystem',
 '/home/pool/Documents/irrlicht-trunk/include',
-'/home/pool/Documents/irrlicht-trunk/examples/irrTest/textArea_v1',
-'/home/pool/Documents/irrlicht-trunk/examples/irrTest/',
-'/home/pool/Documents/irrlicht-trunk/examples/irrTest/pSource/'
-'/home/pool/Documents/irrlicht-trunk/examples/'
+#'/home/pool/Documents/irrlicht-trunk/examples/irrTest/textArea_v1',
+#'/home/pool/Documents/irrlicht-trunk/examples/irrTest/',
+#'/home/pool/Documents/irrlicht-trunk/examples/irrTest/pSource/'
+#'/home/pool/Documents/irrlicht-trunk/examples/'
+'/home/pool/Documents/irrlicht-trunk/irrKlang-64bit-1.5.0/include/'
 ]
 
 
