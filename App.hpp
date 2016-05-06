@@ -30,15 +30,15 @@ public:
 	// create device
 
 	//IrrlichtDevice *device = createDevice(driverType, core::dimension2d<u32>(512, 384));
-	IrrlichtDevice *device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(512, 384), 32, 0, 0 , 1, 0);
-	irrklang::ISoundEngine* soundEngine = irrklang::createIrrKlangDevice();
+	device = createDevice(video::EDT_OPENGL, core::dimension2d<u32>(512, 384), 32, 0, 0 , 1, 0);
+	soundEngine = irrklang::createIrrKlangDevice();
 
 	if (device == 0 || soundEngine == 0 )
 		exit(1);
 
 	device->setWindowCaption(L"show2d");
 
-	video::IVideoDriver* driver = device->getVideoDriver();
+	driver = device->getVideoDriver();
 
 	const io::path mediaPath = getExampleMediaPath();
 
