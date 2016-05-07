@@ -5,7 +5,7 @@
 # Name of the executable created (.exe will be added automatically if necessary)
 Target := 2dProj
 # List of source files, separated by spaces
-Sources := main.cpp
+Sources := main.cpp pCMD.cpp
 # Path to Irrlicht directory, should contain include/ and lib/
 IrrlichtHome := ../..
 # Path for the executable. Note that Irrlicht.dll should usually also be there for win32 systems
@@ -16,8 +16,8 @@ BinPath = ../irr2d
 # preprocessor flags, e.g. defines and include paths
 USERCPPFLAGS = -I$(IrrlichtHome)/irrKlang-64bit-1.5.0/include 
 # compiler flags such as optimization flags
-USERCXXFLAGS = -O3 -ffast-math -pthread
-#USERCXXFLAGS = -g -Wall
+#USERCXXFLAGS = -O3 -ffast-math -pthread
+USERCXXFLAGS = -g -Wall
 # linker flags such as additional libraries and link paths
 USERLDFLAGS =-L"/usr/lib" $(IrrlichtHome)/irrKlang-64bit-1.5.0/bin/linux-gcc-64/libIrrKlang.so
 
