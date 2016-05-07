@@ -7,6 +7,8 @@
 #include "eventReceiver.h" //FWD
 #include "pCMD.h" 
 //#include "chatBox.h" //FWD
+#include "../irrKlang-64bit-1.5.0/include/irrKlang.h"
+
 
 class App
 {
@@ -14,45 +16,44 @@ public:
   
   App()
   {
-    driver=NULL;
-    smgr=NULL;
-    guienv=NULL;
-    eReceiver=NULL;
+    //driver=NULL;
+    //smgr=NULL;
+    //guienv=NULL;
+    //eReceiver=NULL;
 
   }
 
   // Initializes and sets main pointers.
   App(int argc, char *argv[]) 
   {
-        //MyEventReceiver eReceiverObj;	
-	//eReceiver=&eReceiverObj;
-	
-        eReceiver = new MyEventReceiver(); 
-	
-	//eReceiver.init();
+		      //MyEventReceiver eReceiverObj;	
+		//eReceiver=&eReceiverObj;
+		
+  	      eReceiver = new MyEventReceiver(); 
+		
+		//eReceiver.init();
 
-	//TODO: Place handler code in seperate function (necassary?)
-        device = irr::createDeviceEx(processCMDArgs(argc,argv));
+		//TODO: Place handler code in seperate function (necassary?)
+  	      device = irr::createDeviceEx(processCMDArgs(argc,argv));
+		soundEngine = irrklang::createIrrKlangDevice();
+		soundEngine->play2D("../../irrKlang-64bit-1.5.0/media/getout.ogg",1,0);
+		soundEngine->play2D("../../irrKlang-64bit-1.5.0/media/explosion.wav",1,0);
 
-	if (!device)
-	{
-	//	exit 1;
-	}
+		if (!device)
+		{
+		//	exit 1;
+		}
 
-        device->setEventReceiver(eReceiver);
-	device->setWindowCaption(L"Hello World! - Irrlicht Engine Demo");
+  	      device->setEventReceiver(eReceiver);
+		device->setWindowCaption(L"Hello World! - Irrlicht Engine Demo");
 
-	driver = device->getVideoDriver();
-	smgr = device->getSceneManager();
-	guienv = device->getGUIEnvironment();
+		driver = device->getVideoDriver();
+		smgr = device->getSceneManager();
+		guienv = device->getGUIEnvironment();
 
 
-	guienv->addStaticText(L" \"T\" to type. ESC to close.",
+		guienv->addStaticText(L" \"T\" to type. ESC to close.",
 		irr::core::rect<irr::s32>(10,10,260,22), true);
-
-
-
-
 
   }
 
@@ -167,12 +168,13 @@ public:
   
 private: 
 	
-	irr::IrrlichtDevice* device;
-	irr::video::IVideoDriver* driver;
-	irr::scene::ISceneManager* smgr;
-	irr::gui::IGUIEnvironment* guienv;
+	irr::IrrlichtDevice* device = NULL;
+	irrklang::ISoundEngine* soundEngine = NULL;
+	irr::video::IVideoDriver* driver = NULL;
+	irr::scene::ISceneManager* smgr = NULL;
+	irr::gui::IGUIEnvironment* guienv = NULL;
 	
-	MyEventReceiver* eReceiver;
+	MyEventReceiver* eReceiver = NULL;
 
 	double deltaTime = 0.0;
 	int LOGIC_MS_PER_UPDATE = 1000/10; // 10FPS WRITE GETTER/SETTER FOR THESE.
