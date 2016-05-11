@@ -64,7 +64,28 @@ class App
 		device->drop();
 		//smgr->drop();
 	}
+
+	// Returns Ticks/Second.
+	double getLogicTickRate
+	{
+		return (LOGIC_MS_PER_UPDATE * 1000.0);
+	}
 	
+	// Returns Ticks/Second.
+	double getRenderTickRate
+	{
+		return (LOGIC_MS_PER_UPDATE * 1000.0);
+	}
+	
+	void setLogicTickRate(double ticksPerSecond)
+	{
+		LOGIC_MS_PER_UPDATE = 1000.0/ticksPerSecond;
+	}
+	
+	void setRenderTickRate(double framesPerSecond)
+	{
+		RENDER_MS_PER_UPDATE = 1000.0/framesPerSecond;
+	}
 	
 	void runLoop()
 	{
