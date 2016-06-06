@@ -7,7 +7,7 @@
 
 enum { JUMP = 57, RUN = 42 };
 
-irr::core::stringw driverName = "OPENGL";
+irr::core::stringw driverName = "OpenGL";
 irr::core::stringw fullscreen = "0";
 //irr::core::stringw driverName = L"lol";
 
@@ -33,10 +33,10 @@ void SettingsTest()
 	//testSettings.load();
 	testSettings.save();
 	assert( 45 == testSettings.getSettingAsInteger("resolution") );
-	//assert( driverName.c_str() == testSettings.getSetting("driver").c_str() );
 	assert( 0 == testSettings.getSettingAsInteger("fullscreen"));
 	assert( fullscreen == testSettings.getSetting("fullscreen") );
 	assert( driverName == testSettings.getSetting("driver") );
+	//assert( driverName.c_str() == testSettings.getSetting("driver").c_str() );
 
 	//// Should return enums of any pressed action.
 	//testSettings.getAction(JUMP);

@@ -11,6 +11,9 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
+#define TAG_VIDEO "video"
+#define TAG_SOUND "sound"
+#define TAG_KEYS "keys"
 
 class Settings
 {
@@ -35,9 +38,13 @@ public:
 		ResolutionOptions.insert(L"1024x768", dimension2du(1024,768));
 
 		//our preferred defaults
-		SettingMap.insert(L"driver", L"Direct3D9");
+		SettingMap.insert(L"driver", L"OpenGL");
 		SettingMap.insert(L"resolution", L"640x480");
 		SettingMap.insert(L"fullscreen", L"0"); //0 is false
+
+//		dataTags.push_back(TAG_VIDEO);
+//		dataTags.push_back(TAG_SOUND);
+//		dataTags.push_back(TAG_KEYS);
 	}
 
 	// Destructor, you could store settings automatically on exit of your
@@ -85,7 +92,7 @@ public:
 		//while there is more to read
 		while (xml->read())
 		{
-			//check the node type
+		//check the node type
 			switch (xml->getNodeType())
 			{
 				//we found a new element
@@ -110,10 +117,28 @@ public:
 							SettingMap[key] = xml->getAttributeValueSafe(L"value");
 						}
 					}
-
 					//..
 					// You can add your own sections and tags to read in here
 					//..
+
+//					else if (currentSection.empty() && keyTag.equals_ignore_case(xml->getNodeName()))
+//					{
+//						currentSection = keyTag;
+//					}
+//
+//					else if (currentSection.equals_ignore_case(keyTag) && settingTag.equals_ignore_case(xml->getNodeName() ))
+//					{
+//						//read in the key
+//						stringw key = xml->getAttributeValueSafe(L"name");
+//						//if there actually is a key to set
+//						if (!key.empty())
+//						{
+//							//set the setting in the map to the value,
+//							//the [] operator overrides values if they already exist or inserts a new key value
+//							//pair into the settings map if it was not defined yet
+//							SettingMap[key] = xml->getAttributeValueSafe(L"value");
+//						}
+//					}
 				}
 				break;
 
@@ -175,6 +200,26 @@ public:
 		//..
 		// You can add writing sound settings, savegame information etc
 		//..
+
+		////start section with video settings
+		//xwriter->writeElement(L"key");
+		//xwriter->writeLineBreak();					//new line
+
+		//map<stringw, stringw>::Iterator j = SettingMap.getIterator();
+		//for(; !j.atEnd(); j++)
+		//{
+		//	//write element as <setting name="key" value="x" />
+		//	//the second parameter indicates this is an empty element with no children, just attributes
+		//	xwriter->writeElement(L"setting",true, L"name", i->getKey().c_str(), L"value",i->getValue().c_str() );
+		//	xwriter->writeLineBreak();
+		//}
+		//xwriter->writeLineBreak();
+
+		////close video section
+		//xwriter->writeClosingTag(L"key");
+		//xwriter->writeLineBreak();
+
+
 
 		//close mygame section
 		xwriter->writeClosingTag(L"mygame");
@@ -238,9 +283,59 @@ private:
 	Settings& operator=(const Settings& other); // defined but not implemented
 
 	map<stringw, stringw> SettingMap; //current config
+	map<stringw, stringw> keyMap; //key config
 
 	stringw SettingsFile; // location of the xml, usually the
 	irr::IrrlichtDevice* NullDevice;
+
+//	// Holds the types of tags to check for eg. video, sound
+//	irr::core::array<core::stringw> dataTags;
+
+//	int lookForTags(CURRENT ELEMENT)
+//	{
+//		return -1;
+//	}
+//
+//	void readElement(EXML_NODE inputNode)
+//	{
+//			//check the node type
+//		switch (inputNode)
+//		{
+//			//we found a new element
+//			case irr::io::EXN_ELEMENT:
+//			{
+//				//we currently are in the empty or mygame section and find the video tag so we set our current section to video
+//				if (currentSection.empty() && videoTag.equals_ignore_case(xml->getNodeName()))
+//				{
+//					currentSection = videoTag;
+//				}
+//				//we are in the video section and we find a setting to parse
+//				else if (currentSection.equals_ignore_case(videoTag) && settingTag.equals_ignore_case(xml->getNodeName() ))
+//				{
+//					//read in the key
+//					stringw key = xml->getAttributeValueSafe(L"name");
+//					//if there actually is a key to set
+//					if (!key.empty())
+//					{
+//						//set the setting in the map to the value,
+//						//the [] operator overrides values if they already exist or inserts a new key value
+//						//pair into the settings map if it was not defined yet
+//						SettingMap[key] = xml->getAttributeValueSafe(L"value");
+//					}
+//				}
+//				//..
+//				// You can add your own sections and tags to read in here
+//			}
+//			break;
+//
+//			//we found the end of an element
+//			case irr::io::EXN_ELEMENT_END:
+//				//we were at the end of the video section so we reset our tag
+//				currentSection=L"";
+//			break;
+//		}
+//	}
+
 };
 
 #endif /* SETTINGS_H */
