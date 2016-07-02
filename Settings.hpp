@@ -40,8 +40,15 @@ public:
 		//our preferred defaults
 		SettingMap.insert(L"driver", L"OpenGL");
 		SettingMap.insert(L"resolution", L"640x480");
-		SettingMap.insert(L"fullscreen", L"0"); //0 is false
+		SettingMap.insert(L"fullscreen", "0"); //0 is false
 
+		keyMap.insert(L"forward", L"w");
+		keyMap.insert(L"backward", L"s");
+		keyMap.insert(L"left", L"a");
+		keyMap.insert(L"right", L"d");
+		keyMap.insert(L"jump", L"space");
+		keyMap.insert(L"shoot", L"left_mouse");
+		
 //		dataTags.push_back(TAG_VIDEO);
 //		dataTags.push_back(TAG_SOUND);
 //		dataTags.push_back(TAG_KEYS);
@@ -87,7 +94,7 @@ public:
 		const stringw settingTag(L"setting"); //we'll be looking for this tag in the xml
 		stringw currentSection; //keep track of our current section
 		const stringw videoTag(L"video"); //constant for videotag
-		const stringw keyTag(L"key"); //constant for videotag
+		const stringw keyTag(L"key"); //constant for key
 
 		//while there is more to read
 		while (xml->read())
@@ -99,24 +106,55 @@ public:
 				case irr::io::EXN_ELEMENT:
 				{
 					//we currently are in the empty or mygame section and find the video tag so we set our current section to video
-					if (currentSection.empty() && videoTag.equals_ignore_case(xml->getNodeName()))
+					if (videoTag.equals_ignore_case(xml->getNodeName()))
 					{
 						currentSection = videoTag;
 					}
-					//we are in the video section and we find a setting to parse
-					else if (currentSection.equals_ignore_case(videoTag) && settingTag.equals_ignore_case(xml->getNodeName() ))
+					else if (currentSection == videoTag)
 					{
-						//read in the key
 						stringw key = xml->getAttributeValueSafe(L"name");
-						//if there actually is a key to set
 						if (!key.empty())
 						{
-							//set the setting in the map to the value,
-							//the [] operator overrides values if they already exist or inserts a new key value
-							//pair into the settings map if it was not defined yet
 							SettingMap[key] = xml->getAttributeValueSafe(L"value");
 						}
 					}
+					
+
+					//we currently are in the empty or mygame section and find the video tag so we set our current section to video
+					if (keyTag.equals_ignore_case(xml->getNodeName()))
+					{
+						currentSection = keyTag;
+					}
+					else if (currentSection == keyTag)
+					{
+						stringw key = xml->getAttributeValueSafe(L"name");
+						if (!key.empty())
+						{
+							keyMap[key] = xml->getAttributeValueSafe(L"value");
+						}
+					}
+
+
+
+
+			/////////		if (currentSection.empty() && videoTag.equals_ignore_case(xml->getNodeName()))
+			/////////		{
+			/////////			currentSection = videoTag;
+			/////////		}
+			/////////		//we are in the video section and we find a setting to parse
+			/////////		else if (currentSection.equals_ignore_case(videoTag) && settingTag.equals_ignore_case(xml->getNodeName() ))
+			/////////		{
+			/////////			//read in the key
+			/////////			stringw key = xml->getAttributeValueSafe(L"name");
+			/////////			//if there actually is a key to set
+			/////////			if (!key.empty())
+			/////////			{
+			/////////				//set the setting in the map to the value,
+			/////////				//the [] operator overrides values if they already exist or inserts a new key value
+			/////////				//pair into the settings map if it was not defined yet
+			/////////				SettingMap[key] = xml->getAttributeValueSafe(L"value");
+			/////////			}
+			/////////		}
 					//..
 					// You can add your own sections and tags to read in here
 					//..
@@ -191,11 +229,42 @@ public:
 			xwriter->writeElement(L"setting",true, L"name", i->getKey().c_str(), L"value",i->getValue().c_str() );
 			xwriter->writeLineBreak();
 		}
-		xwriter->writeLineBreak();
+
+		//xwriter->writeLineBreak();
 
 		//close video section
 		xwriter->writeClosingTag(L"video");
 		xwriter->writeLineBreak();
+
+
+
+
+		xwriter->writeElement(L"key");
+		xwriter->writeLineBreak();					//new line
+
+		// getIterator gets us a pointer to the first node of the settings map
+		// every iteration we increase the iterator which gives us the next map node
+		// until we reach the end we write settings one by one by using the nodes key and value functions
+		map<stringw, stringw>::Iterator j = keyMap.getIterator();
+		for(; !j.atEnd(); j++)
+		{
+			//write element as <setting name="key" value="x" />
+			//the second parameter indicates this is an empty element with no children, just attributes
+			xwriter->writeElement(L"setting",true, L"name", j->getKey().c_str(), L"value",j->getValue().c_str() );
+			xwriter->writeLineBreak();
+		}
+		//xwriter->writeLineBreak();
+
+		//close video section
+		xwriter->writeClosingTag(L"key");
+		xwriter->writeLineBreak();
+
+
+		//xwriter->writeClosingTag(L"mygame");
+
+
+
+
 
 		//..
 		// You can add writing sound settings, savegame information etc

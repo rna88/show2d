@@ -1,5 +1,6 @@
 #include <irrlicht.h>
 #include <iostream>
+#include <string>
 #include <assert.h>
 #include "../Settings.hpp"
 
@@ -9,6 +10,7 @@ enum { JUMP = 57, RUN = 42 };
 
 irr::core::stringw driverName = "OpenGL";
 irr::core::stringw fullscreen = "0";
+irr::core::stringw key = "space";
 //irr::core::stringw driverName = L"lol";
 
 // Runs tests for the setting object.
@@ -27,15 +29,17 @@ void SettingsTest()
 
 	testSettings.setSetting("lol", "bbbb");
 	testSettings.setSetting("resolution", 45);
+	testSettings.setSetting("shoot", 45);
 	testSettings.save();
 	std::cout << "saving settings\n";
 
 	//testSettings.load();
-	testSettings.save();
+	//testSettings.save();
 	assert( 45 == testSettings.getSettingAsInteger("resolution") );
 	assert( 0 == testSettings.getSettingAsInteger("fullscreen"));
 	assert( fullscreen == testSettings.getSetting("fullscreen") );
 	assert( driverName == testSettings.getSetting("driver") );
+//assert( key == testSettings.getSetting("jump") );
 	//assert( driverName.c_str() == testSettings.getSetting("driver").c_str() );
 
 	//// Should return enums of any pressed action.
