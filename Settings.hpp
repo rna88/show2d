@@ -42,6 +42,14 @@ public:
 		SettingMap.insert(L"resolution", L"640x480");
 		SettingMap.insert(L"fullscreen", "0"); //0 is false
 
+		//irr::KEY_KEY_W
+
+		// insert all keys here. Use a fucntion to do this?
+		keyOptions.insert("w", irr::KEY_KEY_W);
+		keyOptions.insert("s", irr::KEY_KEY_S);
+		keyOptions.insert("a", irr::KEY_KEY_A);
+		keyOptions.insert("d", irr::KEY_KEY_D);
+
 		keyMap.insert(L"forward", L"w");
 		keyMap.insert(L"backward", L"s");
 		keyMap.insert(L"left", L"a");
@@ -347,6 +355,7 @@ public:
 public:
 	map<stringw, s32> DriverOptions; //available options for driver config
 	map<stringw, dimension2du> ResolutionOptions; //available options for resolution config
+	map<stringw, irr::EKEY_CODE> keyOptions; //available options for key config
 private:
 	Settings(const Settings& other); // defined but not implemented
 	Settings& operator=(const Settings& other); // defined but not implemented

@@ -27,9 +27,9 @@ void SettingsTest()
 	//assert( driverName == testSettings.getSetting(driverName) );
 	//assert( driverName.c_str() == testSettings.getSetting(driverName).c_str() );
 
-	testSettings.setSetting("lol", "bbbb");
+	//testSettings.setSetting("lol", "bbbb");
 	testSettings.setSetting("resolution", 45);
-	testSettings.setSetting("shoot", 45);
+	//testSettings.setSetting("shoot", 45);
 	testSettings.save();
 	std::cout << "saving settings\n";
 
