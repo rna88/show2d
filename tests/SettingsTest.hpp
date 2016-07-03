@@ -35,10 +35,10 @@ void SettingsTest()
 
 	//testSettings.load();
 	//testSettings.save();
-	assert( 45 == testSettings.getSettingAsInteger("resolution") );
-	assert( 0 == testSettings.getSettingAsInteger("fullscreen"));
-	assert( fullscreen == testSettings.getSetting("fullscreen") );
-	assert( driverName == testSettings.getSetting("driver") );
+	assert( 45 == testSettings.getSettingAsInteger("resolution") && "resolution setting" );
+	assert( 0 == testSettings.getSettingAsInteger("fullscreen") && "fullscreen setting" );
+	assert( fullscreen == testSettings.getSetting("fullscreen") && "fullscreen setting" );
+	assert( driverName == testSettings.getSetting("driver") && "driver setting" );
 //assert( key == testSettings.getSetting("jump") );
 	//assert( driverName.c_str() == testSettings.getSetting("driver").c_str() );
 

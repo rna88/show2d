@@ -355,7 +355,7 @@ public:
 public:
 	map<stringw, s32> DriverOptions; //available options for driver config
 	map<stringw, dimension2du> ResolutionOptions; //available options for resolution config
-	map<stringw, irr::EKEY_CODE> keyOptions; //available options for key config
+	map<irr::core::stringw, irr::EKEY_CODE> keyOptions; //available options for key config
 private:
 	Settings(const Settings& other); // defined but not implemented
 	Settings& operator=(const Settings& other); // defined but not implemented
