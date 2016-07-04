@@ -55,11 +55,29 @@ void insertKeyCodes(irr::core::map<irr::core::stringw, irr::EKEY_CODE> &inputMap
 	inputMap.insert("Y", irr::KEY_KEY_Y);
 	inputMap.insert("Z", irr::KEY_KEY_Z);
 	
+	inputMap.insert("SPACE", irr::KEY_SPACE);
 	inputMap.insert("TAB", irr::KEY_TAB);
 	inputMap.insert("LEFT_SHIFT", irr::KEY_LSHIFT);
 	inputMap.insert("RIGHT_SHIFT", irr::KEY_RSHIFT);
 	inputMap.insert("LEFT_CTRL", irr::KEY_LCONTROL);
 	inputMap.insert("RIGHT_CTRL", irr::KEY_RCONTROL);
+	inputMap.insert("CAPSLOCK", irr::KEY_CAPITAL);
+
+	inputMap.insert("UP", irr::KEY_UP);
+	inputMap.insert("DOWN", irr::KEY_DOWN);
+	inputMap.insert("RIGHT", irr::KEY_RIGHT);
+	inputMap.insert("LEFT", irr::KEY_LEFT);
+
+	inputMap.insert("NUMPAD_0", irr::KEY_NUMPAD0);
+	inputMap.insert("NUMPAD_1", irr::KEY_NUMPAD1);
+	inputMap.insert("NUMPAD_2", irr::KEY_NUMPAD2);
+	inputMap.insert("NUMPAD_3", irr::KEY_NUMPAD3);
+	inputMap.insert("NUMPAD_4", irr::KEY_NUMPAD4);
+	inputMap.insert("NUMPAD_5", irr::KEY_NUMPAD5);
+	inputMap.insert("NUMPAD_6", irr::KEY_NUMPAD7);
+	inputMap.insert("NUMPAD_8", irr::KEY_NUMPAD8);
+	inputMap.insert("NUMPAD_9", irr::KEY_NUMPAD9);
+
 
 
 	inputMap.insert("F1", irr::KEY_F1);

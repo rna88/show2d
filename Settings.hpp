@@ -104,6 +104,15 @@ public:
 		const stringw videoTag(L"video"); //constant for videotag
 		const stringw keyTag(L"key"); //constant for key
 
+		//action is the name of the map which holds all bindings.
+		//settingName is the name of the action we are binding keys for (read from file).
+		//keyOptions[valueFromFile] returns the key code the action should be assigned to.
+		//binding a key example:
+		//action[settingNameFromFile] = keyOptions[valueFromFile]
+		//Final usage:
+		//if ( getKeyDown(action[JUMP]) )
+
+
 		//while there is more to read
 		while (xml->read())
 		{
